@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded drop-shadow-lg;
+  }
+.btn-blue {
+    @apply bg-blue-500 text-white;
+  }
+.btn-blue:hover {
+    @apply bg-blue-700;
+  }
+
+
+
+
+.titletext{
+    @apply text-xl font-mono text-white font-semibold;
+}
+
+.contenttext{
+    @apply text-lg text-white;
+
+}
+
+
+.trborder {
+
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.99);
+    -moz-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.99);
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.99);
+  }
+
+.buttonsize {
+  margin-left: auto;
+    margin-right: auto;
+    width: 3vw;
+    height: 6vh;
+}
