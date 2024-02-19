@@ -10,14 +10,41 @@ class TaskController extends Controller
 {
     public function index(){
 
-        // $tasks = DB::table("tasks")->paginate(8);
-        $tasks = Task::paginate(5);
-        return view("Tasks.index", ["tasks" =>$tasks]);
+        $tasks = Task::where('is_archived', false)->paginate(5);
+        // $tasks = Task::paginate(5);
+        return view("Tasks.index", ["tasks" => $tasks]);
 
     }
 
 // -------------------------------------------------------------------------------------------------------------------------
 
+public function archive(){
+
+    $tasks = Task::where('is_archived', true)->paginate(5);
+    return view("tasks.archive", ["tasks" => $tasks]);
+}
+
+// -------------------------------------------------------------------------------------------------------------------------
+
+public function editarchive($id){
+
+    $task = Task::find($id);
+    return view("tasks.editarchive", compact("task"));
+
+}
+
+// -------------------------------------------------------------------------------------------------------------------------
+
+public function updatearchive(Request $request, $id)
+{
+   $task = Task::find($id);
+   $task["is_archived"] = empty($request["is_archived"]) ? false : true;
+
+   $task->save();
+    return redirect("/archive")->with('success', 'Task archived successfully');
+}
+
+// -------------------------------------------------------------------------------------------------------------------------
     public function create(){
 
         return view("tasks.create");
@@ -41,6 +68,7 @@ class TaskController extends Controller
         $data["datedue"] = $request["datedue"];
         $data["timedue"] = $request["timedue"];
 
+
         $newTask = Task::create($data);
 
         info($data);
@@ -50,6 +78,9 @@ class TaskController extends Controller
 
 // -------------------------------------------------------------------------------------------------------------------------
 
+
+
+// -------------------------------------------------------------------------------------------------------------------------
     public function edit(Task $task){
 
         return view("tasks.edit", ["task" => $task]);
@@ -67,6 +98,7 @@ class TaskController extends Controller
         $data["category2"] = empty($request["category2"]) ? false : true; // If-Statement als Oneliner: if category1 is NOT empty -> true
         $data["datedue"] = $request["datedue"];
         $data["timedue"] = $request["timedue"];
+
         
         $task->update($data);
 

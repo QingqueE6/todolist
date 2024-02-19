@@ -18,7 +18,11 @@
                 <a class="btn btn-blue" href="/task/create">Create Task</a> 
             </div>
 
-            <div id="createbutton" class="ml-auto p-2">
+            <div id="archivebutton" class="p-2">
+                <a class="btn btn-blue" href="/archive">Archive</a> 
+            </div>
+
+            <div id="logoutbutton" class="ml-auto p-2">
             <form action="/logout" method="POST">
             @csrf
                 <button class="btn btn-blue">Logout</button>

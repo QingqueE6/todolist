@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Task extends Model
 {
     use HasFactory;
+    
 
     protected $fillable =[
 
@@ -21,6 +24,9 @@ class Task extends Model
         "category2",
         "datedue",
         "timedue",
+        "is_archived",
 
     ];
+
+    
 }

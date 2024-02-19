@@ -1,7 +1,7 @@
 
 
 <div id="loginsection" class="bg-slate-500 p-2 mt-2 mb-2 vw-5"><h1>
-    <h2 class="text-primary font-weight-bold">Don't have an account? Register here</h2>
+    <h2 class="text-white font-weight-bold">Don't have an account? Register here</h2>
     <form action="/register" method="POST">
     @csrf
             <div id="formcontrol" class="bg-dark m-2 p-2">

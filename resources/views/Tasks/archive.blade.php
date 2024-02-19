@@ -1,5 +1,6 @@
 <x-layout>
-    <x-center-content>
+<x-center-content>
+
     @if(session()->has("success"))
         {{session("success")}}
     @endif
@@ -16,15 +17,11 @@
             <th class="border border-slate-200">Description</th>
             <th class="border border-slate-200">Created at:</th>
             <th class="border border-slate-200">Categories</th>
-            <th class="border border-slate-200">Due until:</th>
-            <th class=""></th>
-            <th class=""></th>
         </tr>
         
-        
         @foreach($tasks as $task)
-        @if($task->is_archived == 0)
-        
+        @if($task->is_archived == true)
+    
             <tr class="trborder">                   
                 <td class="border border-slate-200">#{{$task->id}}</td>
                 <td class="border border-slate-200">{{$task->title}}</td>
@@ -33,33 +30,7 @@
                 
                 <td class="border border-slate-200">      @if($task->category1 === 1) <span class="badge badge-success">Private</span> @endif
                                                             @if($task->category2 === 1) <span class="badge badge-danger">Work</span> @endif</td>
-
-                <td class="border border-slate-200">{{$task->datedue}} {{$task->timedue}}</td>
-                
-                @can("update", $task)
-                <td class="border border-slate-200">
-                    <a href="{{route("tasks.edit", ["task" => $task])}}">EDIT</a>
-                </td>
-                @endcan
-
-                @can("update", $task)
-                <td class="border border-slate-200">
-                    <form method="get" action="{{route("tasks.editarchive", ["id" => $task->id])}}">      
-                            <button>ARCHIVE</button>
-                    </form>
-                </td>
-                @endcan
-
-                @can("delete", $task)
-                <td class="border border-slate-200"> 
-                    <form method="post" action="{{route("tasks.delete", ["task" => $task])}}">
-                    @csrf @method("delete")
-                    <button class="btn btn-blue fa fa-trash"></button>
-                    </form>
-                </td>
-            
-                @endcan
-        
+             
             </tr>
         @endif
         @endforeach
@@ -68,7 +39,4 @@
 </div>
 
 </x-center-content>
-
-
-
 </x-layout>

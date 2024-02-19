@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
 
-            $table->date("datedue")->nullable();
-            $table->time("timedue")->nullable();
+            $table->boolean("is_archived")->default(0);
 
         });
     }
@@ -26,8 +25,8 @@ return new class extends Migration
     {
         Schema::table('tasks', function (Blueprint $table) {
 
-            $table->dropColumn("datedue");
-            $table->dropColumn("timedue");
+            $table->dropColumn("is_archived");
+
         });
     }
 };

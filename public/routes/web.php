@@ -32,12 +32,13 @@ Route::post("/logout", [UserController::class, "logout"])->middleware("loggedInU
 // Todo Tasks: CRUD Operations
 Route::get("/task", [TaskController::class, "index"])->name("tasks.index")->middleware("loggedInUser");
 Route::post("/task", [TaskController::class, "store"])->name("tasks.store")->middleware("loggedInUser");
+
 Route::get("/task/create", [TaskController::class, "create"])->name("tasks.create")->middleware("loggedInUser");
 Route::get("/task/{task}/edit", [TaskController::class, "edit"])->name("tasks.edit")->middleware("loggedInUser");
 Route::put("/task/{task}/update", [TaskController::class, "update"])->name("tasks.update")->middleware("loggedInUser");
 Route::delete("/task/{task}/delete", [TaskController::class, "delete"])->name("tasks.delete")->middleware("loggedInUser");
 
-// Archive
-Route::get("/edit-archive/{id}", [TaskController::class, "editarchive"])->name("tasks.editarchive")->middleware("loggedInUser");
-Route::put("/edit-archive/{id}", [TaskController::class, "updatearchive"])->middleware("loggedInUser");
+//Archives
 Route::get("/archive", [TaskController::class, "archive"])->middleware("loggedInUser");
+Route::get("/edit-archive/{id}", [TaskController::class, "editarchive"])->name("tasks.editarchive")->middleware("loggedInUser");
+Route::put("/edit-archive/{id}", [TaskController::class, "updatearchive"])->name("tasks.editarchive")->middleware("loggedInUser");
